@@ -1,6 +1,6 @@
 {
   "name": "massdriver-rjsf",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "description": "Massdriver's wrapper for RJSF providing access to custom fields, widgets, & templates.",
   "main": "dist/index.js",
   "scripts": {
