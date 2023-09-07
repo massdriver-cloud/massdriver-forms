@@ -13,7 +13,7 @@ const EnhancedDeployLockedDropdown = ({
   const [pastValue] = useState(formContext?.hasDeployed ? formData : '')
 
   const disableType = uiSchema?.disableType || 'lower'
-  console.log({ props })
+
   return (
     <DeployLockedDropdown
       pastValue={pastValue}

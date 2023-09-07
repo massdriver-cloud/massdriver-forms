@@ -19,7 +19,7 @@ const EnhancedCredentialsDropdown = ({
   const { data, loading, error } = services.getCredentials()
 
 
-  const sortedData = [...(data?.artifacts?.items || [])]?.sort((x, y) =>
+  const sortedData = [...(data || [])]?.sort((x, y) =>
     SORT_MAP[x?.type] < SORT_MAP[y?.type]
       ? -1
       : SORT_MAP[x?.type] > SORT_MAP[y?.type]

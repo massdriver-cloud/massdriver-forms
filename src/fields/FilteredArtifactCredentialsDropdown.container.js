@@ -20,8 +20,8 @@ const EnhancedFilteredArtifactCredentialsDropdown = ({
   const { data, loading, error } = services.getFilteredArtifactCredentials({ type: uiSchema?.cloudType })
 
 
-  const sortedArtifacts = data?.filterArtifactsByType
-    ? [...data?.filterArtifactsByType].sort((x, y) =>
+  const sortedArtifacts = data
+    ? [...data].sort((x, y) =>
       x.name < y.name ? -1 : x.name > y.name ? 1 : 0
     )
     : []

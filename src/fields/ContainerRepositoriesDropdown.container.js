@@ -16,17 +16,17 @@ const EnhancedContainerRepositoriesDropdown = ({
   const returnType = uiSchema?.returnType || 'cloudProviderId'
 
   const missingValueWarning = useHandleMissingSelectValue(
-    data?.containerRepositories,
+    data,
     returnType,
     formData,
     onChange
   )
 
   const containerRepositoryKeys = Object.keys(
-    data?.containerRepositories?.[0] || {}
+    data?.[0] || {}
   )
 
-  data?.containerRepositories?.[0] &&
+  data?.[0] &&
     !containerRepositoryKeys.includes(returnType) &&
     console.warn(
       'invalid returnType',
@@ -43,7 +43,7 @@ const EnhancedContainerRepositoriesDropdown = ({
       cloud={uiSchema?.cloud}
       loading={loading}
       error={error}
-      containerRepositories={data?.containerRepositories}
+      containerRepositories={data}
       returnType={returnType}
       value={formData || ''}
       onChange={onChange}

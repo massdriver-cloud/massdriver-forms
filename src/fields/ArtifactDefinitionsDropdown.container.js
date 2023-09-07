@@ -12,7 +12,7 @@ const EnhancedArtifactDefinitionsDropdown = ({
 }) => {
   const { data, loading, error } = services.getArtifactDefinitions({ filter: uiSchema?.filter })
 
-  const artifactDefinitions = (data?.artifactDefinitions || [])
+  const artifactDefinitions = (data || [])
     .map(def => ({
       ...def,
       label: uiSchema?.removePrefix

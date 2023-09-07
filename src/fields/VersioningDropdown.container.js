@@ -14,7 +14,7 @@ const EnhancedVersioningDropdown = ({
   const [pastValue] = useState(formContext?.hasDeployed ? formData : '')
 
   const versions = semverUtil?.sort(schema?.enum, 'desc')
-  console.log({ props })
+
   return (
     <VersioningDropdown
       pastValue={pastValue}
