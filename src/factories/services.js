@@ -1,7 +1,7 @@
 const createServices = (suppliedServices = {}) => {
 
   const defaultService = () => ({
-    fetch: () => ({
+    format: () => ({
       data: undefined,
       loading: false,
       error: {

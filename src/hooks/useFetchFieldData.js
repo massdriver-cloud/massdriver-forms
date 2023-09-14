@@ -6,6 +6,8 @@ const useFetchFieldData = ({ fetch, format }) => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    if (!fetch) return
+
     const abortController = new AbortController()
     const signal = abortController.signal
     const doFetch = async () => {
@@ -33,7 +35,8 @@ const useFetchFieldData = ({ fetch, format }) => {
     }
   }, [skip])
 
-  const { data: formattedData, loading: formattedLoading, error: formattedError } = format({ data, loading, error })
+
+  const { data: formattedData, loading: formattedLoading, error: formattedError } = format ? format({ data, loading, error }) : ({ data, loading, error })
 
 
 
