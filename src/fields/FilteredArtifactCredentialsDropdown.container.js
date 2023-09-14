@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import FilteredArtifactCredentialsDropdown from './FilteredArtifactCredentialsDropdown'
 import { isTruthyString } from '../utils/string'
+import useFetchFieldData from '../hooks/useFetchFieldData'
 
 const EnhancedFilteredArtifactCredentialsDropdown = ({
   formData,
@@ -17,7 +18,7 @@ const EnhancedFilteredArtifactCredentialsDropdown = ({
       'The FilteredArtifactCredentialsDropdown must be provided a valid cloudType through the uiSchema'
     )
 
-  const { data, loading, error } = services.getFilteredArtifactCredentials({ type: uiSchema?.cloudType })
+  const { data, loading, error } = useFetchFieldData(services.getFilteredArtifactCredentials({ type: uiSchema?.cloudType }), 'getFilteredArtifactCredentials')
 
 
   const sortedArtifacts = data
@@ -32,7 +33,7 @@ const EnhancedFilteredArtifactCredentialsDropdown = ({
       value={formData || ''}
       onChange={onChange}
       title={schema?.title}
-      error={error}
+      error={Boolean(error)}
       cloudType={uiSchema?.cloudType}
       sortedArtifacts={sortedArtifacts}
       schema={schema}

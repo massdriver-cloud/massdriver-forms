@@ -1,4 +1,5 @@
 import InstanceTypesDropdown from './InstanceTypesDropdown'
+import useFetchFieldData from '../hooks/useFetchFieldData'
 
 const FALLBACK_DATA = [
   {
@@ -108,17 +109,17 @@ const EnhancedInstanceTypesDropdown = ({
   services,
   ...props
 }) => {
-  const { data, loading, error } = services.getInstanceTypes({
+  const { data, loading, error } = useFetchFieldData(services.getInstanceTypes({
     manifestId: formContext?.manifestId,
     targetId: formContext?.targetId,
     query: uiSchema?.query,
     service: uiSchema?.service
-  })
+  }), 'getInstanceTypes')
 
   return (
     <InstanceTypesDropdown
       loading={loading}
-      error={error}
+      error={Boolean(error)}
       value={formData || ''}
       instanceTypes={data || FALLBACK_DATA}
       uiSchema={uiSchema}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const useFetchFieldData = ({ fetch, format }) => {
+const useFetchFieldData = ({ fetch, format }, serviceName) => {
   const [data, setData] = useState(null)
   const [response, setResponse] = useState(null)
   const [error, setError] = useState(null)
@@ -43,11 +43,16 @@ const useFetchFieldData = ({ fetch, format }) => {
     response
   }
 
-  const { data: formattedData, loading: formattedLoading, error: formattedError, response: formattedResponse } = format ? format(fetchData) : fetchData
+  const formattedFetchData = format ? format(fetchData) : fetchData
 
-  console.log({ format, fetch })
+  formattedFetchData?.error?.messages?.forEach(message => console.error(`@massdriver/forms - ${serviceName} service error - ${message}`))
 
-  return { data: formattedData, loading: formattedLoading, error: formattedError, response: formattedResponse }
+  return {
+    data: formattedFetchData?.data,
+    loading: formattedFetchData?.loading,
+    error: formattedFetchData?.error,
+    response: formattedFetchData?.response
+  }
 }
 
 export default useFetchFieldData

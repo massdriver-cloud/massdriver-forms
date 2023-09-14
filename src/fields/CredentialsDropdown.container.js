@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import CredentialsDropdown from './CredentialsDropdown'
+import useFetchFieldData from '../hooks/useFetchFieldData'
 
 const SORT_MAP = {
   'massdriver/aws-iam-role': 0,
@@ -16,7 +17,7 @@ const EnhancedCredentialsDropdown = ({
   services,
   ...props
 }) => {
-  const { data, loading, error } = services.getCredentials()
+  const { data, loading, error } = useFetchFieldData(services.getCredentials(), 'getCredentials')
 
 
   const sortedData = [...(data || [])]?.sort((x, y) =>
@@ -30,7 +31,7 @@ const EnhancedCredentialsDropdown = ({
   return (
     <CredentialsDropdown
       loading={loading}
-      error={error}
+      error={Boolean(error)}
       options={sortedData.map(credential => ({
         ...credential,
         label: credential?.name,
