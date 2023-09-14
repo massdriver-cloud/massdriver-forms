@@ -1,6 +1,6 @@
 {
   "name": "@massdriver/forms",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Massdriver's wrapper for RJSF providing access to custom fields, widgets, & templates.",
   "main": "dist/index.js",
   "scripts": {
