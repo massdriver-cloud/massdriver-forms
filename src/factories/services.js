@@ -26,17 +26,17 @@ const createServices = (suppliedServices = {}) => {
     ...defaultServices,
     ...suppliedServices
   }
+  return services
+  // return Object.keys(services).reduce((prev, cur) => ({
+  //   ...prev,
+  //   [cur]: (...variables) => {
+  //     const { data, loading, error } = services[cur](...variables)
 
-  return Object.keys(services).reduce((prev, cur) => ({
-    ...prev,
-    [cur]: (...variables) => {
-      const { data, loading, error } = services[cur](...variables)
+  //     error?.messages?.forEach(message => console.error(`@massdriver/forms - ${cur} service error - ${message}`))
 
-      error?.messages?.forEach(message => console.error(`@massdriver/forms - ${cur} service error - ${message}`))
-
-      return { data, loading, error }
-    }
-  }), {})
+  //     return { data, loading, error }
+  //   }
+  // }), {})
 }
 
 export default createServices
