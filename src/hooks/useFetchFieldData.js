@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 const useFetchFieldData = ({ fetch, format }) => {
   const [data, setData] = useState(null)
+  const [response, setResponse] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -33,14 +34,20 @@ const useFetchFieldData = ({ fetch, format }) => {
     return () => {
       abortController.abort()
     }
-  }, [skip])
+  }, [])
+
+  const fetchData = {
+    data,
+    loading,
+    error,
+    response
+  }
+
+  const { data: formattedData, loading: formattedLoading, error: formattedError, response: formattedResponse } = format ? format(fetchData) : fetchData
 
 
-  const { data: formattedData, loading: formattedLoading, error: formattedError } = format ? format({ data, loading, error }) : ({ data, loading, error })
 
-
-
-  return { data: formattedData, loading: formattedLoading, error: formattedError }
+  return { data: formattedData, loading: formattedLoading, error: formattedError, response: formattedResponse }
 }
 
 export default useFetchFieldData
