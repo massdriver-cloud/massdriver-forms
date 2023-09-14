@@ -1,13 +1,15 @@
 const createServices = (suppliedServices = {}) => {
 
   const defaultService = () => ({
-    data: undefined,
-    loading: false,
-    error: {
-      messages: [
-        "No fetch service configured for this field."
-      ]
-    }
+    fetch: () => ({
+      data: undefined,
+      loading: false,
+      error: {
+        messages: [
+          "No fetch service configured for this field."
+        ]
+      }
+    })
   })
 
   const defaultServices = {

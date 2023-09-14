@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import DnsZonesDropdown from './DnsZonesDropdown'
 import useHandleMissingSelectValue from '../hooks/useHandleMissingSelectValue'
+import useFetchFieldData from '../hooks/useFetchFieldData'
 
 const EnhancedDnsZonesDropdown = ({
   formData,
@@ -11,7 +12,7 @@ const EnhancedDnsZonesDropdown = ({
   ...props
 }) => {
 
-  const { data, loading, error } = services.getDnsZones({ cloud: uiSchema?.cloud })
+  const { data, loading, error } = useFetchFieldData(services.getDnsZones({ cloud: uiSchema?.cloud }))
 
   const missingValueWarning = useHandleMissingSelectValue(
     data?.dnsZones,
