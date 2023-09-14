@@ -45,7 +45,7 @@ const useFetchFieldData = ({ fetch, format }) => {
 
   const { data: formattedData, loading: formattedLoading, error: formattedError, response: formattedResponse } = format ? format(fetchData) : fetchData
 
-
+  console.log({ format, fetch })
 
   return { data: formattedData, loading: formattedLoading, error: formattedError, response: formattedResponse }
 }
