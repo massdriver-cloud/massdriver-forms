@@ -45,6 +45,8 @@ const useFetchFieldData = ({ fetch, format }, serviceName) => {
 
   const formattedFetchData = format ? format(fetchData) : fetchData
 
+  console.log({ formattedFetchData })
+
   formattedFetchData?.error?.messages?.forEach(message => console.error(`@massdriver/forms - ${serviceName} service error - ${message}`))
 
   return {
