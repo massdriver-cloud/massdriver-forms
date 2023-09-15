@@ -1,3 +1,3 @@
-import createForm from './factories/form'
+import Form from './components/Form/Form'
 
-export default createForm
+export default Form
