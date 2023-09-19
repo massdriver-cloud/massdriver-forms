@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import ArtifactDefinitionsDropdown from './ArtifactDefinitionsDropdown'
 import { unslugify } from '../utils/string'
-import useFetchFieldData from '../hooks/useFetchFieldData'
 
 const EnhancedArtifactDefinitionsDropdown = ({
   formData,
@@ -11,7 +10,7 @@ const EnhancedArtifactDefinitionsDropdown = ({
   services,
   ...props
 }) => {
-  const { data, loading, error } = useFetchFieldData(services.getArtifactDefinitions({ filter: uiSchema?.filter }), 'getArtifactDefinitions')
+  const { data, loading, error } = services.getArtifactDefinitions({ filter: uiSchema?.filter })
 
   const artifactDefinitions = (data || [])
     .map(def => ({

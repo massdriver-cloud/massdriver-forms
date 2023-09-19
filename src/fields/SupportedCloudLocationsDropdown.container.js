@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import SupportedCloudLocationsDropdown from './SupportedCloudLocationsDropdown'
 import { isTruthyString } from '../utils/string'
-import useFetchFieldData from '../hooks/useFetchFieldData'
 
 const EnhancedSupportedCloudLocationsDropdown = ({
   formData,
@@ -18,7 +17,7 @@ const EnhancedSupportedCloudLocationsDropdown = ({
       'The SupportedCloudLocationsDropdown must be provided a valid cloudService through the uiSchema'
     )
 
-  const { data, loading, error } = useFetchFieldData(services.getSupportedCloudLocations({ cloudService: uiSchema?.cloudService }), 'getSupportedCloudLocations')
+  const { data, loading, error } = services.getSupportedCloudLocations({ cloudService: uiSchema?.cloudService })
 
   return (
     <SupportedCloudLocationsDropdown

@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import ContainerRepositoriesDropdown from './ContainerRepositoriesDropdown'
 import useHandleMissingSelectValue from '../hooks/useHandleMissingSelectValue'
-import useFetchFieldData from '../hooks/useFetchFieldData'
 
 const EnhancedContainerRepositoriesDropdown = ({
   formData,
@@ -12,7 +11,7 @@ const EnhancedContainerRepositoriesDropdown = ({
   ...props
 }) => {
 
-  const { data, loading, error } = useFetchFieldData(services.getContainerRepositories({ cloud: uiSchema?.cloud }), 'getContainerRepositories')
+  const { data, loading, error } = services.getContainerRepositories({ cloud: uiSchema?.cloud })
 
   const returnType = uiSchema?.returnType || 'cloudProviderId'
 

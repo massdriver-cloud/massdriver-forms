@@ -1,14 +1,12 @@
 const createServices = (suppliedServices = {}) => {
   const defaultService = () => ({
-    format: () => ({
-      data: undefined,
-      loading: false,
-      error: {
-        messages: [
-          "No fetch service configured for this field."
-        ]
-      }
-    })
+    data: undefined,
+    loading: false,
+    error: {
+      messages: [
+        "No fetch service configured for this field."
+      ]
+    }
   })
 
   const defaultServices = {
@@ -21,10 +19,21 @@ const createServices = (suppliedServices = {}) => {
     getCredentials: defaultService,
   }
 
-  return {
+  const services = {
     ...defaultServices,
     ...suppliedServices
   }
+
+  return Object.keys(services).reduce((prev, cur) => ({
+    ...prev,
+    [cur]: (...variables) => {
+      const { data, loading, error } = services[cur](...variables)
+
+      error?.messages?.forEach(message => console.error(`@massdriver/forms - ${cur} service error - ${message}`))
+
+      return { data, loading, error }
+    }
+  }), {})
 }
 
 export default createServices
